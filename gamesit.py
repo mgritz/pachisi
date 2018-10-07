@@ -20,13 +20,17 @@ class FieldViewer:
         self.colors = colors
 
     def draw(self):
-        field = ""
+        field = []
         for s in self.game.field:
             slot = "|"
             if s == None :
                 slot = slot + " "
             else:
                 slot = slot + colored("█", self.colors[s.player])
-            field = field + slot
-        print(field)
+
+            field.append(slot)
+
+        for s in range(len(self.game.starts)):
+            field[self.game.starts[s]] = "|" + colored("#", self.colors[s])
+        print("".join(field))
 
